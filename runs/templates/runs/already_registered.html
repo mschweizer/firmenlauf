@@ -1,0 +1,49 @@
+{% extends 'runs/base.html' %}
+
+{% block title %}Already Registered{% endblock %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">You are already registered!</h1>
+        <p class="col-md-8 fs-4">You have already registered for {{ participant.event.name }}.</p>
+        <div class="alert alert-info">
+            <h4 class="alert-heading">Registration Information</h4>
+            <p>You registered for this event on {{ participant.registered_at|date:"F j, Y, g:i a" }}.</p>
+            <p>If you believe this is an error or you need to update your registration, please contact the administrator at <a href="mailto:{{ admin_email }}">{{ admin_email }}</a>.</p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3>Your Registration Details</h3>
+            </div>
+            <div class="card-body">
+                <p><strong>Name:</strong> {{ participant.name }}</p>
+                <p><strong>Department:</strong> {{ participant.department }}</p>
+                <p><strong>Year of Birth:</strong> {{ participant.year_of_birth }}</p>
+                <p><strong>T-shirt Size:</strong> {{ participant.get_tshirt_size_display }}</p>
+                <p><strong>Email:</strong> {{ participant.email }}</p>
+                <p><strong>Registration Date:</strong> {{ participant.registered_at|date:"F j, Y, g:i a" }}</p>
+                {% if participant.on_waiting_list %}
+                <p><strong class="text-warning">Status:</strong> On waiting list</p>
+                {% endif %}
+
+                <hr>
+
+                <h4>Event Information</h4>
+                <p><strong>Event:</strong> {{ participant.event.name }}</p>
+                <p><strong>Date:</strong> {{ participant.event.date|date:"F j, Y" }}</p>
+                <p><strong>Location:</strong> {{ participant.event.location }}</p>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <a href="{% url 'event_list' %}" class="btn btn-primary">Back to Events List</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
