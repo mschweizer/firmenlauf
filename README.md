@@ -12,6 +12,41 @@ A Django application for managing running event registrations. This application 
 - Prevent duplicate registrations
 - View registration details and status
 
+## Screenshots
+
+Here are some screenshots showcasing these features:
+
+### Event List
+
+![Event List Page](static/img/screenshots/event-list.png)
+
+The event list page displays all available running events as cards. Each card shows the event name, date, location, registration deadline, available spots, and a brief description. The page uses a magenta color scheme with different colors to indicate status: red for deadlines, yellow for waiting list warnings, green for available spots.
+
+### Event Detail and Registration
+
+![Event Detail Page](static/img/screenshots/event-detail.png)
+
+The event detail page shows comprehensive information about a running event, including the event name, date, location, registration deadline, and available spots. Below that is the full event description. The main part of the page contains a registration form with fields for name, department, year of birth, t-shirt size, and email.
+
+### Registration Success
+
+![Registration Success Page](static/img/screenshots/success.png)
+
+After successful registration, participants see a confirmation page with their registration details, including name, department, year of birth, t-shirt size, email, and registration date. It also shows the event information, including the event name, date, and location.
+
+### Waiting List Notification
+
+![Waiting List Notification](static/img/screenshots/waiting-list.png)
+
+If an event is full, participants are automatically placed on a waiting list. The registration success page shows a warning box explaining that the event has reached its maximum number of participants and that they will be notified if a spot becomes available.
+
+### Admin Interface
+
+![Admin Interface for Events](static/img/screenshots/admin-events.png)
+![Admin Interface for Participants](static/img/screenshots/admin-participants.png)
+
+The Django admin interface allows administrators to manage running events and participants. It displays a list of running events with columns for name, date, location, and registration deadline. Each event has links to edit or delete it. The admin interface also has a section for managing participants, showing their name, event, department, and registration status.
+
 ## Installation
 
 ### Prerequisites
