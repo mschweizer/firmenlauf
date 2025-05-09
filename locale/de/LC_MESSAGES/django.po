@@ -16,6 +16,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: runs/forms.py:43
+msgid "Full Name"
+msgstr "Vor- und Nachname"
+
+#: runs/forms.py:44
+msgid "Department"
+msgstr "Bereich und Abteilung"
+
+#: runs/forms.py:45
+msgid "Year of Birth"
+msgstr "Jahrgang"
+
+#: runs/forms.py:46
+msgid "T-Shirt Size"
+msgstr "T-Shirt-Größe"
+
+#: runs/forms.py:47
+msgid "Email"
+msgstr "E-Mail"
+
 #: runs/forms.py:53
 msgid "Year of birth must be between 1900 and 2023."
 msgstr "Der Jahrgang muss zwischen 1900 und 2023 liegen."

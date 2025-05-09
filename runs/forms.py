@@ -24,6 +24,14 @@ class ParticipantForm(forms.ModelForm):
 
         model = Participant
         fields = ["name", "department", "year_of_birth", "tshirt_size", "email"]
+        labels = {
+            "name": _("Full Name"),
+            "department": _("Department"),
+            "year_of_birth": _("Year of Birth"),
+            "tshirt_size": _("T-Shirt Size"),
+            "email": _("Email"),
+        }
+
         widgets = {
             "year_of_birth": forms.NumberInput(attrs={"min": 1900, "max": 2023}),
         }
