@@ -161,7 +161,9 @@ class RunningEventDetailViewTest(TestCase):
         response = self.client.get(reverse("event_detail", args=[self.closed_event.pk]))
         self.assertEqual(response.status_code, 200)
         self.assertFalse(self.closed_event.is_registration_open())
-        self.assertContains(response, "Registration for this event is currently closed")
+        self.assertContains(
+            response, "Die Anmeldung für diese Veranstaltung ist derzeit geschlossen."
+        )
 
     def test_successful_registration(self):
         """Test successful registration for an event."""

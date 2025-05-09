@@ -38,3 +38,12 @@ repos:
         additional_dependencies: [
             'django-stubs',
         ]
+
+-   repo: local
+    hooks:
+    -   id: run-django-tests
+        name: Run Django Tests
+        entry: bash -c "python manage.py test"
+        language: system
+        pass_filenames: false
+        always_run: true
