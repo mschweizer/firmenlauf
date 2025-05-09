@@ -1,16 +1,10 @@
 """Views for the runs application."""
-# Standard library imports
-
 # Django imports
 from django.conf import settings
 from django.contrib import messages
 from django.core.exceptions import NON_FIELD_ERRORS
-from django.db import models
-from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse, reverse_lazy
-from django.utils import timezone
-from django.views.generic import CreateView, DetailView, ListView, TemplateView
-from django import forms
+from django.shortcuts import redirect, render
+from django.views.generic import DetailView, ListView
 
 # Local application imports
 from .forms import ParticipantForm
@@ -27,8 +21,8 @@ class RunningEventListView(ListView):
     """
 
     model = RunningEvent
-    template_name = 'runs/event_list.html'
-    context_object_name = 'events'
+    template_name = "runs/event_list.html"
+    context_object_name = "events"
 
     def get_queryset(self):
         """
@@ -37,7 +31,7 @@ class RunningEventListView(ListView):
         Returns:
             list: A list of RunningEvent objects with open registration.
         """
-        events = RunningEvent.objects.all().order_by('date')
+        events = RunningEvent.objects.all().order_by("date")
         # Filter to only include events where registration is open
         return [event for event in events if event.is_registration_open()]
 
@@ -50,10 +44,11 @@ class RunningEventListView(ListView):
         """
         context = super().get_context_data(**kwargs)
         # Add available spots information to each event
-        for event in context['events']:
+        for event in context["events"]:
             if event.max_participants:
                 event.available_spots = event.get_available_spots()
         return context
+
 
 class RunningEventDetailView(DetailView):
     """
@@ -65,8 +60,8 @@ class RunningEventDetailView(DetailView):
     """
 
     model = RunningEvent
-    template_name = 'runs/event_detail.html'
-    context_object_name = 'event'
+    template_name = "runs/event_detail.html"
+    context_object_name = "event"
 
     def get_context_data(self, **kwargs):
         """
@@ -76,11 +71,11 @@ class RunningEventDetailView(DetailView):
             dict: The context dictionary with added form and available spots information.
         """
         context = super().get_context_data(**kwargs)
-        context['form'] = ParticipantForm(event=self.object)
+        context["form"] = ParticipantForm(event=self.object)
 
         # Add available spots information
         if self.object.max_participants:
-            context['available_spots'] = self.object.get_available_spots()
+            context["available_spots"] = self.object.get_available_spots()
 
         return context
 
@@ -97,14 +92,15 @@ class RunningEventDetailView(DetailView):
             **kwargs: Arbitrary keyword arguments
 
         Returns:
-            HttpResponse: Redirect to success page, already registered page, or back to form with errors
+            HttpResponse: Redirect to success page, already registered page,
+                or back to form with errors
         """
         self.object = self.get_object()
 
         # Check if registration is open
         if not self.object.is_registration_open():
             messages.error(request, "Registration for this event is closed.")
-            return redirect('event_detail', pk=self.object.pk)
+            return redirect("event_detail", pk=self.object.pk)
 
         form = ParticipantForm(request.POST, event=self.object)
         if form.is_valid():
@@ -114,21 +110,21 @@ class RunningEventDetailView(DetailView):
             if self.object.max_participants and not self.object.has_available_spots():
                 participant.on_waiting_list = True
                 messages.warning(
-                    request,
-                    "No spots available. You have been placed on the waiting list."
+                    request, "No spots available. You have been placed on the waiting list."
                 )
 
             participant.save()
-            return redirect('registration_success', pk=participant.pk)
+            return redirect("registration_success", pk=participant.pk)
         else:
             # Check if this is our special "already registered" error
             if "already_registered" in form.errors[NON_FIELD_ERRORS]:
                 # Redirect to the already registered page with the existing participant
-                return redirect('already_registered', pk=form.existing_participant.pk)
+                return redirect("already_registered", pk=form.existing_participant.pk)
 
         context = self.get_context_data(object=self.object)
-        context['form'] = form
+        context["form"] = form
         return render(request, self.template_name, context)
+
 
 class RegistrationSuccessView(DetailView):
     """
@@ -140,8 +136,8 @@ class RegistrationSuccessView(DetailView):
     """
 
     model = Participant
-    template_name = 'runs/registration_success.html'
-    context_object_name = 'participant'
+    template_name = "runs/registration_success.html"
+    context_object_name = "participant"
 
 
 class AlreadyRegisteredView(DetailView):
@@ -154,8 +150,8 @@ class AlreadyRegisteredView(DetailView):
     """
 
     model = Participant
-    template_name = 'runs/already_registered.html'
-    context_object_name = 'participant'
+    template_name = "runs/already_registered.html"
+    context_object_name = "participant"
 
     def get_context_data(self, **kwargs):
         """
@@ -165,5 +161,5 @@ class AlreadyRegisteredView(DetailView):
             dict: The context dictionary with added admin email.
         """
         context = super().get_context_data(**kwargs)
-        context['admin_email'] = settings.ADMIN_EMAIL
+        context["admin_email"] = settings.ADMIN_EMAIL
         return context

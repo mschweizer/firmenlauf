@@ -4,34 +4,54 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('runs', '0002_runningevent_registration_deadline'),
+        ("runs", "0002_runningevent_registration_deadline"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='runningevent',
-            name='registration_open',
+            model_name="runningevent",
+            name="registration_open",
         ),
         migrations.AddField(
-            model_name='participant',
-            name='on_waiting_list',
-            field=models.BooleanField(default=False, help_text='Indicates if the participant is on the waiting list'),
+            model_name="participant",
+            name="on_waiting_list",
+            field=models.BooleanField(
+                default=False, help_text="Indicates if the participant is on the waiting list"
+            ),
         ),
         migrations.AddField(
-            model_name='runningevent',
-            name='max_participants',
-            field=models.PositiveIntegerField(blank=True, help_text='Maximum number of participants allowed. If not set, there is no limit.', null=True),
+            model_name="runningevent",
+            name="max_participants",
+            field=models.PositiveIntegerField(
+                blank=True,
+                help_text="Maximum number of participants allowed. If not set, there is no limit.",
+                null=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='participant',
-            name='tshirt_size',
-            field=models.CharField(choices=[('XS', 'Extra Small'), ('S', 'Small'), ('M', 'Medium'), ('L', 'Large'), ('XL', 'Extra Large'), ('XXL', 'Double Extra Large'), ('NO', 'I already have a t-shirt')], max_length=3),
+            model_name="participant",
+            name="tshirt_size",
+            field=models.CharField(
+                choices=[
+                    ("XS", "Extra Small"),
+                    ("S", "Small"),
+                    ("M", "Medium"),
+                    ("L", "Large"),
+                    ("XL", "Extra Large"),
+                    ("XXL", "Double Extra Large"),
+                    ("NO", "I already have a t-shirt"),
+                ],
+                max_length=3,
+            ),
         ),
         migrations.AlterField(
-            model_name='runningevent',
-            name='registration_deadline',
-            field=models.DateField(blank=True, help_text='Last day for registration. If not set, registration is always open.', null=True),
+            model_name="runningevent",
+            name="registration_deadline",
+            field=models.DateField(
+                blank=True,
+                help_text="Last day for registration. If not set, registration is always open.",
+                null=True,
+            ),
         ),
     ]

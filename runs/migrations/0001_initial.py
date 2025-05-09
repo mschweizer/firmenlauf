@@ -5,36 +5,64 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='RunningEvent',
+            name="RunningEvent",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200)),
-                ('date', models.DateField()),
-                ('location', models.CharField(max_length=200)),
-                ('description', models.TextField()),
-                ('registration_open', models.BooleanField(default=True)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+                    ),
+                ),
+                ("name", models.CharField(max_length=200)),
+                ("date", models.DateField()),
+                ("location", models.CharField(max_length=200)),
+                ("description", models.TextField()),
+                ("registration_open", models.BooleanField(default=True)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
             ],
         ),
         migrations.CreateModel(
-            name='Participant',
+            name="Participant",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200)),
-                ('department', models.CharField(max_length=100)),
-                ('year_of_birth', models.IntegerField()),
-                ('tshirt_size', models.CharField(choices=[('XS', 'Extra Small'), ('S', 'Small'), ('M', 'Medium'), ('L', 'Large'), ('XL', 'Extra Large'), ('XXL', 'Double Extra Large')], max_length=3)),
-                ('email', models.EmailField(max_length=254)),
-                ('registered_at', models.DateTimeField(auto_now_add=True)),
-                ('event', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='participants', to='runs.runningevent')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+                    ),
+                ),
+                ("name", models.CharField(max_length=200)),
+                ("department", models.CharField(max_length=100)),
+                ("year_of_birth", models.IntegerField()),
+                (
+                    "tshirt_size",
+                    models.CharField(
+                        choices=[
+                            ("XS", "Extra Small"),
+                            ("S", "Small"),
+                            ("M", "Medium"),
+                            ("L", "Large"),
+                            ("XL", "Extra Large"),
+                            ("XXL", "Double Extra Large"),
+                        ],
+                        max_length=3,
+                    ),
+                ),
+                ("email", models.EmailField(max_length=254)),
+                ("registered_at", models.DateTimeField(auto_now_add=True)),
+                (
+                    "event",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="participants",
+                        to="runs.runningevent",
+                    ),
+                ),
             ],
         ),
     ]

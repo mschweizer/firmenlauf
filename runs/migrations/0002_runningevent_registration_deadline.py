@@ -4,15 +4,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('runs', '0001_initial'),
+        ("runs", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='runningevent',
-            name='registration_deadline',
-            field=models.DateField(blank=True, help_text='Last day for registration. If not set, registration is open until manually closed.', null=True),
+            model_name="runningevent",
+            name="registration_deadline",
+            field=models.DateField(
+                blank=True,
+                help_text="Last day for registration. If not set, registration is open until manually closed.",
+                null=True,
+            ),
         ),
     ]

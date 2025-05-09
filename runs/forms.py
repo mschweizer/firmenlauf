@@ -6,7 +6,7 @@ from django import forms
 from django.core.exceptions import NON_FIELD_ERRORS
 
 # Local application imports
-from .models import Participant, RunningEvent
+from .models import Participant
 
 
 class ParticipantForm(forms.ModelForm):
@@ -21,9 +21,9 @@ class ParticipantForm(forms.ModelForm):
         """Meta class for ParticipantForm."""
 
         model = Participant
-        fields = ['name', 'department', 'year_of_birth', 'tshirt_size', 'email']
+        fields = ["name", "department", "year_of_birth", "tshirt_size", "email"]
         widgets = {
-            'year_of_birth': forms.NumberInput(attrs={'min': 1900, 'max': 2023}),
+            "year_of_birth": forms.NumberInput(attrs={"min": 1900, "max": 2023}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -34,8 +34,22 @@ class ParticipantForm(forms.ModelForm):
             *args: Variable length argument list
             **kwargs: Arbitrary keyword arguments, including 'event'
         """
-        self.event = kwargs.pop('event', None)
+        self.event = kwargs.pop("event", None)
         super().__init__(*args, **kwargs)
+
+    def clean_year_of_birth(self):
+        """
+        Validate the year_of_birth field.
+
+        This method checks if the year of birth is within a reasonable range.
+
+        Returns:
+            int: The cleaned year of birth
+        """
+        year_of_birth = self.cleaned_data.get("year_of_birth")
+        if year_of_birth and (year_of_birth < 1900 or year_of_birth > 2023):
+            raise forms.ValidationError("Year of birth must be between 1900 and 2023.")
+        return year_of_birth
 
     def clean(self):
         """
@@ -48,18 +62,15 @@ class ParticipantForm(forms.ModelForm):
             dict: The cleaned form data
         """
         cleaned_data = super().clean()
-        name = cleaned_data.get('name')
-        department = cleaned_data.get('department')
-        year_of_birth = cleaned_data.get('year_of_birth')
+        name = cleaned_data.get("name")
+        department = cleaned_data.get("department")
+        year_of_birth = cleaned_data.get("year_of_birth")
 
         # Check if this person is already registered for this event
         if name and department and year_of_birth and self.event:
             try:
                 self.existing_participant = Participant.objects.get(
-                    event=self.event,
-                    name=name,
-                    department=department,
-                    year_of_birth=year_of_birth
+                    event=self.event, name=name, department=department, year_of_birth=year_of_birth
                 )
                 # Instead of raising an error, we'll store the existing participant
                 # and handle it in the view

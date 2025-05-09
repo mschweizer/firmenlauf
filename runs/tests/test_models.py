@@ -1,10 +1,10 @@
 """Tests for the models of the runs application."""
-from datetime import date, timedelta
+from datetime import timedelta
 
 from django.test import TestCase
 from django.utils import timezone
 
-from runs.models import RunningEvent, Participant
+from runs.models import Participant, RunningEvent
 
 
 class RunningEventModelTest(TestCase):

@@ -1,11 +1,11 @@
 """Tests for the views of the runs application."""
 from datetime import timedelta
 
-from django.test import TestCase, Client
+from django.test import Client, TestCase
 from django.urls import reverse
 from django.utils import timezone
 
-from runs.models import RunningEvent, Participant
+from runs.models import Participant, RunningEvent
 
 
 class RunningEventListViewTest(TestCase):
@@ -46,28 +46,28 @@ class RunningEventListViewTest(TestCase):
 
     def test_view_url_exists_at_desired_location(self):
         """Test that the view URL exists at the desired location."""
-        response = self.client.get('/')
+        response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
 
     def test_view_url_accessible_by_name(self):
         """Test that the view URL is accessible by name."""
-        response = self.client.get(reverse('event_list'))
+        response = self.client.get(reverse("event_list"))
         self.assertEqual(response.status_code, 200)
 
     def test_view_uses_correct_template(self):
         """Test that the view uses the correct template."""
-        response = self.client.get(reverse('event_list'))
+        response = self.client.get(reverse("event_list"))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'runs/event_list.html')
+        self.assertTemplateUsed(response, "runs/event_list.html")
 
     def test_only_open_events_in_context(self):
         """Test that only events with open registration are in the context."""
-        response = self.client.get(reverse('event_list'))
+        response = self.client.get(reverse("event_list"))
         self.assertEqual(response.status_code, 200)
-        self.assertIn('events', response.context)
-        
+        self.assertIn("events", response.context)
+
         # Check that only open events are in the context
-        events = response.context['events']
+        events = response.context["events"]
         self.assertEqual(len(events), 2)
         self.assertIn(self.open_event, events)
         self.assertIn(self.limited_event, events)
@@ -75,14 +75,14 @@ class RunningEventListViewTest(TestCase):
 
     def test_available_spots_in_context(self):
         """Test that available spots information is in the context."""
-        response = self.client.get(reverse('event_list'))
+        response = self.client.get(reverse("event_list"))
         self.assertEqual(response.status_code, 200)
-        
+
         # Check that available spots information is in the context
-        events = response.context['events']
+        events = response.context["events"]
         for event in events:
             if event.max_participants:
-                self.assertTrue(hasattr(event, 'available_spots'))
+                self.assertTrue(hasattr(event, "available_spots"))
 
 
 class RunningEventDetailViewTest(TestCase):
@@ -135,29 +135,29 @@ class RunningEventDetailViewTest(TestCase):
 
     def test_view_url_exists_at_desired_location(self):
         """Test that the view URL exists at the desired location."""
-        response = self.client.get(f'/event/{self.event.pk}/')
+        response = self.client.get(f"/event/{self.event.pk}/")
         self.assertEqual(response.status_code, 200)
 
     def test_view_url_accessible_by_name(self):
         """Test that the view URL is accessible by name."""
-        response = self.client.get(reverse('event_detail', args=[self.event.pk]))
+        response = self.client.get(reverse("event_detail", args=[self.event.pk]))
         self.assertEqual(response.status_code, 200)
 
     def test_view_uses_correct_template(self):
         """Test that the view uses the correct template."""
-        response = self.client.get(reverse('event_detail', args=[self.event.pk]))
+        response = self.client.get(reverse("event_detail", args=[self.event.pk]))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'runs/event_detail.html')
+        self.assertTemplateUsed(response, "runs/event_detail.html")
 
     def test_form_in_context(self):
         """Test that the registration form is in the context."""
-        response = self.client.get(reverse('event_detail', args=[self.event.pk]))
+        response = self.client.get(reverse("event_detail", args=[self.event.pk]))
         self.assertEqual(response.status_code, 200)
-        self.assertIn('form', response.context)
+        self.assertIn("form", response.context)
 
     def test_registration_closed(self):
         """Test that registration is closed for events with past deadline."""
-        response = self.client.get(reverse('event_detail', args=[self.closed_event.pk]))
+        response = self.client.get(reverse("event_detail", args=[self.closed_event.pk]))
         self.assertEqual(response.status_code, 200)
         self.assertFalse(self.closed_event.is_registration_open())
         self.assertContains(response, "Registration for this event is currently closed")
@@ -165,47 +165,47 @@ class RunningEventDetailViewTest(TestCase):
     def test_successful_registration(self):
         """Test successful registration for an event."""
         response = self.client.post(
-            reverse('event_detail', args=[self.event.pk]),
+            reverse("event_detail", args=[self.event.pk]),
             {
-                'name': 'New Participant',
-                'department': 'Test Department',
-                'year_of_birth': 2000,
-                'tshirt_size': 'M',
-                'email': 'new@example.com',
-            }
+                "name": "New Participant",
+                "department": "Test Department",
+                "year_of_birth": 2000,
+                "tshirt_size": "M",
+                "email": "new@example.com",
+            },
         )
         self.assertEqual(response.status_code, 302)  # Redirect after successful registration
-        
+
         # Check that the participant was created
         self.assertTrue(
             Participant.objects.filter(
                 event=self.event,
-                name='New Participant',
-                department='Test Department',
+                name="New Participant",
+                department="Test Department",
                 year_of_birth=2000,
-                tshirt_size='M',
-                email='new@example.com',
+                tshirt_size="M",
+                email="new@example.com",
             ).exists()
         )
 
     def test_waiting_list(self):
         """Test that participants are placed on waiting list when event is full."""
         response = self.client.post(
-            reverse('event_detail', args=[self.limited_event.pk]),
+            reverse("event_detail", args=[self.limited_event.pk]),
             {
-                'name': 'Waiting Participant',
-                'department': 'Test Department',
-                'year_of_birth': 2001,
-                'tshirt_size': 'L',
-                'email': 'waiting@example.com',
-            }
+                "name": "Waiting Participant",
+                "department": "Test Department",
+                "year_of_birth": 2001,
+                "tshirt_size": "L",
+                "email": "waiting@example.com",
+            },
         )
         self.assertEqual(response.status_code, 302)  # Redirect after successful registration
-        
+
         # Check that the participant was created and placed on waiting list
         waiting_participant = Participant.objects.get(
             event=self.limited_event,
-            name='Waiting Participant',
+            name="Waiting Participant",
         )
         self.assertTrue(waiting_participant.on_waiting_list)
 
@@ -213,38 +213,38 @@ class RunningEventDetailViewTest(TestCase):
         """Test that participants cannot register twice for the same event."""
         # First registration
         self.client.post(
-            reverse('event_detail', args=[self.event.pk]),
+            reverse("event_detail", args=[self.event.pk]),
             {
-                'name': 'Duplicate Participant',
-                'department': 'Test Department',
-                'year_of_birth': 2000,
-                'tshirt_size': 'M',
-                'email': 'duplicate@example.com',
-            }
+                "name": "Duplicate Participant",
+                "department": "Test Department",
+                "year_of_birth": 2000,
+                "tshirt_size": "M",
+                "email": "duplicate@example.com",
+            },
         )
-        
+
         # Second registration with same details
         response = self.client.post(
-            reverse('event_detail', args=[self.event.pk]),
+            reverse("event_detail", args=[self.event.pk]),
             {
-                'name': 'Duplicate Participant',
-                'department': 'Test Department',
-                'year_of_birth': 2000,
-                'tshirt_size': 'L',  # Different t-shirt size
-                'email': 'different@example.com',  # Different email
-            }
+                "name": "Duplicate Participant",
+                "department": "Test Department",
+                "year_of_birth": 2000,
+                "tshirt_size": "L",  # Different t-shirt size
+                "email": "different@example.com",  # Different email
+            },
         )
-        
+
         # Should redirect to already registered page
         self.assertEqual(response.status_code, 302)
-        
+
         # Check that only one participant was created
         self.assertEqual(
             Participant.objects.filter(
                 event=self.event,
-                name='Duplicate Participant',
-                department='Test Department',
+                name="Duplicate Participant",
+                department="Test Department",
                 year_of_birth=2000,
             ).count(),
-            1
+            1,
         )
