@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 #: runs/forms.py:53
 msgid "Year of birth must be between 1900 and 2023."
-msgstr "Das Geburtsjahr muss zwischen 1900 und 2023 liegen."
+msgstr "Der Jahrgang muss zwischen 1900 und 2023 liegen."
 
 #: runs/models.py:26
 msgid "Last day for registration. If not set, registration is always open."
@@ -38,27 +38,27 @@ msgstr "Laufveranstaltungen"
 
 #: runs/models.py:94
 msgid "Extra Small"
-msgstr "Extra Klein"
+msgstr "XS"
 
 #: runs/models.py:95
 msgid "Small"
-msgstr "Klein"
+msgstr "S"
 
 #: runs/models.py:96
 msgid "Medium"
-msgstr "Mittel"
+msgstr "M"
 
 #: runs/models.py:97
 msgid "Large"
-msgstr "Groß"
+msgstr "L"
 
 #: runs/models.py:98
 msgid "Extra Large"
-msgstr "Extra Groß"
+msgstr "XL"
 
 #: runs/models.py:99
 msgid "Double Extra Large"
-msgstr "Doppelt Extra Groß"
+msgstr "XXL"
 
 #: runs/models.py:100
 msgid "I already have a t-shirt"
@@ -101,7 +101,7 @@ msgid ""
 "If you believe this is an error or you need to update your registration, "
 "please contact the administrator at"
 msgstr ""
-"Wenn Sie glauben, dass dies ein Fehler ist oder Sie Ihre Registrierung aktualisieren müssen, "
+"Wenn Sie glauben, dass dies ein Fehler ist oder Sie Ihre Registrierung aktualisieren möchten, "
 "kontaktieren Sie bitte den Administrator unter"
 
 #: runs/templates/runs/already_registered.html:23
@@ -121,7 +121,7 @@ msgstr "Abteilung:"
 #: runs/templates/runs/already_registered.html:28
 #: runs/templates/runs/registration_success.html:29
 msgid "Year of Birth:"
-msgstr "Geburtsjahr:"
+msgstr "Jahrgang:"
 
 #: runs/templates/runs/already_registered.html:29
 #: runs/templates/runs/registration_success.html:30
