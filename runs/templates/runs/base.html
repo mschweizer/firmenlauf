@@ -12,7 +12,7 @@
             --magenta-secondary: #FF69B4;  /* Hot Pink */
             --magenta-light: #FFD1EC;      /* Light Pink */
             --magenta-dark: #8B008B;       /* Dark Magenta */
-            --magenta-accent: #FF00FF;     /* Magenta */
+            --magenta-accent: #FF69B4;     /* Magenta */
             --text-on-dark: #FFFFFF;       /* White text for dark backgrounds */
             --text-on-light: #333333;      /* Dark text for light backgrounds */
         }
@@ -20,7 +20,7 @@
         body {
             padding-top: 2rem;
             padding-bottom: 2rem;
-            background-color: #FFF5FB;     /* Very light pink background */
+            background-color: #FFFFFF;     /* Very light pink background */
             color: var(--text-on-light);
         }
 
@@ -29,8 +29,8 @@
         }
 
         .card {
-            border-color: var(--magenta-light);
-            box-shadow: 0 2px 5px rgba(199, 21, 133, 0.1);
+            border-color: var(--text-on-dark);
+            box-shadow: 0 2px 5px var(--text-on-light);
         }
 
         .card-title {
@@ -108,7 +108,7 @@
         }
 
         .text-muted {
-            color: #BA55D3 !important;
+            color: var(--text-on-light) !important;
         }
     </style>
 </head>

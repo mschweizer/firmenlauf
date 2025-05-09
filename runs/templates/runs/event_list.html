@@ -7,7 +7,7 @@
 <div class="p-5 mb-4 rounded-3" style="background-color: var(--magenta-light);">
     <div class="container-fluid py-5">
         <h1 class="display-5 fw-bold" style="color: var(--magenta-dark);">{% trans "Running Events Registration" %}</h1>
-        <p class="col-md-8 fs-4" style="color: var(--magenta-primary);">{% trans "Sign up for upcoming running events organized by our company." %}</p>
+        <p class="col-md-8 fs-4" style="color: var(--text-on-light);">{% trans "Sign up for upcoming running events organized by our company." %}</p>
     </div>
 </div>
 
@@ -24,7 +24,7 @@
                         {% endif %}
                         {% if event.max_participants %}
                             {% if event.available_spots == 0 %}
-                            <p class="card-text text-warning">{% trans "No spots available - registration will place you on the waiting list" %}</p>
+                            <p class="card-text text-danger">{% trans "No spots available - registration will place you on the waiting list" %}</p>
                             {% else %}
                             <p class="card-text text-success">{{ event.available_spots }} {% trans "spots available out of" %} {{ event.max_participants }}</p>
                             {% endif %}
