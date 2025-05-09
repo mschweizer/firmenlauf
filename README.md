@@ -139,6 +139,42 @@ python manage.py test runs.tests.test_views
 python manage.py test runs.tests.test_forms
 ```
 
+### Internationalization and Localization
+
+This project supports multiple languages:
+
+- **Default language**: German (de)
+- **Supported languages**: German (de), English (en)
+
+The application's user interface is fully translated and can be displayed in any of the supported languages.
+
+#### Adding or Updating Translations
+
+To add or update translations:
+
+1. Mark strings for translation:
+   - In Python files: Use `gettext_lazy as _` from `django.utils.translation`
+   - In templates: Use `{% trans "text" %}` or `{% blocktrans %}text{% endblocktrans %}`
+
+2. Extract messages to create/update .po files:
+   ```bash
+   python manage.py makemessages -l de  # For German
+   python manage.py makemessages -l en  # For English
+   ```
+
+3. Edit the .po files in the `locale/<language_code>/LC_MESSAGES/` directory to add translations
+
+4. Compile the translations:
+   ```bash
+   python manage.py compilemessages
+   ```
+
+#### Switching Languages
+
+Users can switch languages by:
+- Setting their browser's preferred language
+- Using the language selector in the user interface (if implemented)
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.

@@ -5,6 +5,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.exceptions import NON_FIELD_ERRORS
 from django.shortcuts import redirect, render
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, ListView
 
 # Local application imports
@@ -100,7 +101,7 @@ class RunningEventDetailView(DetailView):
 
         # Check if registration is open
         if not self.object.is_registration_open():
-            messages.error(request, "Registration for this event is closed.")
+            messages.error(request, _("Registration for this event is closed."))
             return redirect("event_detail", pk=self.object.pk)
 
         form = ParticipantForm(request.POST, event=self.object)
@@ -111,7 +112,7 @@ class RunningEventDetailView(DetailView):
             if self.object.max_participants and not self.object.has_available_spots():
                 participant.on_waiting_list = True
                 messages.warning(
-                    request, "No spots available. You have been placed on the waiting list."
+                    request, _("No spots available. You have been placed on the waiting list.")
                 )
 
             participant.save()

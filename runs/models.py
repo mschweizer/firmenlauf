@@ -4,6 +4,7 @@ from typing import Optional
 
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 from django_stubs_ext.db.models.manager import RelatedManager
 
 
@@ -22,12 +23,12 @@ class RunningEvent(models.Model):
     registration_deadline: models.DateField = models.DateField(
         null=True,
         blank=True,
-        help_text="Last day for registration. If not set, registration is always open.",
+        help_text=_("Last day for registration. If not set, registration is always open."),
     )
     max_participants: models.PositiveIntegerField = models.PositiveIntegerField(
         null=True,
         blank=True,
-        help_text="Maximum number of participants allowed. If not set, there is no limit.",
+        help_text=_("Maximum number of participants allowed. If not set, there is no limit."),
     )
     created_at: models.DateTimeField = models.DateTimeField(auto_now_add=True)
     participants: RelatedManager["Participant"]
@@ -35,8 +36,8 @@ class RunningEvent(models.Model):
     class Meta:
         """Meta options for the RunningEvent model."""
 
-        verbose_name = "running event"
-        verbose_name_plural = "running events"
+        verbose_name = _("running event")
+        verbose_name_plural = _("running events")
 
     def __str__(self):
         """Return a string representation of the running event."""
@@ -89,14 +90,14 @@ class Participant(models.Model):
     They can be placed on a waiting list if the event is full.
     """
 
-    TSHIRT_SIZES: list[tuple[str, str]] = [
-        ("XS", "Extra Small"),
-        ("S", "Small"),
-        ("M", "Medium"),
-        ("L", "Large"),
-        ("XL", "Extra Large"),
-        ("XXL", "Double Extra Large"),
-        ("NO", "I already have a t-shirt"),
+    TSHIRT_SIZES: list = [
+        ("XS", _("Extra Small")),
+        ("S", _("Small")),
+        ("M", _("Medium")),
+        ("L", _("Large")),
+        ("XL", _("Extra Large")),
+        ("XXL", _("Double Extra Large")),
+        ("NO", _("I already have a t-shirt")),
     ]
 
     event: models.ForeignKey = models.ForeignKey(
@@ -108,15 +109,15 @@ class Participant(models.Model):
     tshirt_size: models.CharField = models.CharField(max_length=3, choices=TSHIRT_SIZES)
     email: models.EmailField = models.EmailField()
     on_waiting_list: models.BooleanField = models.BooleanField(
-        default=False, help_text="Indicates if the participant is on the waiting list"
+        default=False, help_text=_("Indicates if the participant is on the waiting list")
     )
     registered_at: models.DateTimeField = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         """Meta options for the Participant model."""
 
-        verbose_name = "participant"
-        verbose_name_plural = "participants"
+        verbose_name = _("participant")
+        verbose_name_plural = _("participants")
 
     def __str__(self) -> str:
         """Return a string representation of the participant."""
