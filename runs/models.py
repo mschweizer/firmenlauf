@@ -1,4 +1,5 @@
 """Models for the runs application."""
+
 from typing import Optional
 
 from django.db import models
@@ -116,3 +117,7 @@ class Participant(models.Model):
 
         verbose_name = "participant"
         verbose_name_plural = "participants"
+
+    def __str__(self) -> str:
+        """Return a string representation of the participant."""
+        return f"{self.name} - {self.event.name}"

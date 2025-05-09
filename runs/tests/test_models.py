@@ -1,4 +1,5 @@
 """Tests for the models of the runs application."""
+
 from datetime import timedelta
 
 from django.test import TestCase

@@ -27,7 +27,7 @@ if not ALLOWED_HOSTS or ALLOWED_HOSTS == [""]:
     )
 
 # Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 # Use environment variables for database configuration
 DATABASES = {
     "default": {

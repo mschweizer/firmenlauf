@@ -16,8 +16,8 @@ A Django application for managing running event registrations. This application 
 
 ### Prerequisites
 
-- Python 3.9 or higher
-- Django 4.2 or higher
+- Python 3.11 or higher
+- Django 5.2 or higher
 
 ### Setup
 

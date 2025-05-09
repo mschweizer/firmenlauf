@@ -1,4 +1,5 @@
 """Application configuration for the runs app."""
+
 from django.apps import AppConfig
 
 

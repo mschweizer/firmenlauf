@@ -1,4 +1,5 @@
 """Admin configuration for the runs application."""
+
 from django.contrib import admin
 
 from .models import Participant, RunningEvent

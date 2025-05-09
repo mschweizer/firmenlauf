@@ -1,4 +1,5 @@
 """Tests for the views of the runs application."""
+
 from datetime import timedelta
 
 from django.test import Client, TestCase
