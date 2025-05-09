@@ -1,0 +1,288 @@
+# German translation for the Running Events Registration application.
+# Copyright (C) 2025 Running Events Registration
+# This file is distributed under the same license as the Running Events Registration package.
+# Marvin Schweizer <marvin.schweizer@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Running Events Registration 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-09 13:51+0000\n"
+"PO-Revision-Date: 2025-05-09 13:51+0000\n"
+"Last-Translator: Marvin Schweizer <marvin.schweizer@gmail.com>\n"
+"Language-Team: German <de@li.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: runs/forms.py:53
+msgid "Year of birth must be between 1900 and 2023."
+msgstr "Das Geburtsjahr muss zwischen 1900 und 2023 liegen."
+
+#: runs/models.py:26
+msgid "Last day for registration. If not set, registration is always open."
+msgstr "Letzter Tag für die Anmeldung. Wenn nicht gesetzt, ist die Anmeldung immer offen."
+
+#: runs/models.py:31
+msgid "Maximum number of participants allowed. If not set, there is no limit."
+msgstr "Maximale Anzahl der zugelassenen Teilnehmer. Wenn nicht gesetzt, gibt es keine Begrenzung."
+
+#: runs/models.py:39
+msgid "running event"
+msgstr "Laufveranstaltung"
+
+#: runs/models.py:40
+msgid "running events"
+msgstr "Laufveranstaltungen"
+
+#: runs/models.py:94
+msgid "Extra Small"
+msgstr "Extra Klein"
+
+#: runs/models.py:95
+msgid "Small"
+msgstr "Klein"
+
+#: runs/models.py:96
+msgid "Medium"
+msgstr "Mittel"
+
+#: runs/models.py:97
+msgid "Large"
+msgstr "Groß"
+
+#: runs/models.py:98
+msgid "Extra Large"
+msgstr "Extra Groß"
+
+#: runs/models.py:99
+msgid "Double Extra Large"
+msgstr "Doppelt Extra Groß"
+
+#: runs/models.py:100
+msgid "I already have a t-shirt"
+msgstr "Ich habe bereits ein T-Shirt"
+
+#: runs/models.py:112
+msgid "Indicates if the participant is on the waiting list"
+msgstr "Gibt an, ob der Teilnehmer auf der Warteliste steht"
+
+#: runs/models.py:119
+msgid "participant"
+msgstr "Teilnehmer"
+
+#: runs/models.py:120
+msgid "participants"
+msgstr "Teilnehmer"
+
+#: runs/templates/runs/already_registered.html:4
+msgid "Already Registered"
+msgstr "Bereits Registriert"
+
+#: runs/templates/runs/already_registered.html:9
+msgid "You are already registered!"
+msgstr "Sie sind bereits registriert!"
+
+#: runs/templates/runs/already_registered.html:10
+msgid "You have already registered for"
+msgstr "Sie haben sich bereits registriert für"
+
+#: runs/templates/runs/already_registered.html:12
+msgid "Registration Information"
+msgstr "Registrierungsinformationen"
+
+#: runs/templates/runs/already_registered.html:13
+msgid "You registered for this event on"
+msgstr "Sie haben sich für diese Veranstaltung registriert am"
+
+#: runs/templates/runs/already_registered.html:14
+msgid ""
+"If you believe this is an error or you need to update your registration, "
+"please contact the administrator at"
+msgstr ""
+"Wenn Sie glauben, dass dies ein Fehler ist oder Sie Ihre Registrierung aktualisieren müssen, "
+"kontaktieren Sie bitte den Administrator unter"
+
+#: runs/templates/runs/already_registered.html:23
+msgid "Your Registration Details"
+msgstr "Ihre Registrierungsdetails"
+
+#: runs/templates/runs/already_registered.html:26
+#: runs/templates/runs/registration_success.html:27
+msgid "Name:"
+msgstr "Name:"
+
+#: runs/templates/runs/already_registered.html:27
+#: runs/templates/runs/registration_success.html:28
+msgid "Department:"
+msgstr "Abteilung:"
+
+#: runs/templates/runs/already_registered.html:28
+#: runs/templates/runs/registration_success.html:29
+msgid "Year of Birth:"
+msgstr "Geburtsjahr:"
+
+#: runs/templates/runs/already_registered.html:29
+#: runs/templates/runs/registration_success.html:30
+msgid "T-shirt Size:"
+msgstr "T-Shirt-Größe:"
+
+#: runs/templates/runs/already_registered.html:30
+#: runs/templates/runs/registration_success.html:31
+msgid "Email:"
+msgstr "E-Mail:"
+
+#: runs/templates/runs/already_registered.html:31
+#: runs/templates/runs/registration_success.html:32
+msgid "Registration Date:"
+msgstr "Registrierungsdatum:"
+
+#: runs/templates/runs/already_registered.html:33
+msgid "Status:"
+msgstr "Status:"
+
+#: runs/templates/runs/already_registered.html:33
+msgid "On waiting list"
+msgstr "Auf der Warteliste"
+
+#: runs/templates/runs/already_registered.html:38
+#: runs/templates/runs/registration_success.html:36
+msgid "Event Information"
+msgstr "Veranstaltungsinformationen"
+
+#: runs/templates/runs/already_registered.html:39
+#: runs/templates/runs/registration_success.html:37
+msgid "Event:"
+msgstr "Veranstaltung:"
+
+#: runs/templates/runs/already_registered.html:40
+#: runs/templates/runs/event_detail.html:11
+#: runs/templates/runs/registration_success.html:38
+msgid "Date:"
+msgstr "Datum:"
+
+#: runs/templates/runs/already_registered.html:41
+#: runs/templates/runs/event_detail.html:12
+#: runs/templates/runs/registration_success.html:39
+msgid "Location:"
+msgstr "Ort:"
+
+#: runs/templates/runs/already_registered.html:46
+#: runs/templates/runs/event_detail.html:65
+#: runs/templates/runs/registration_success.html:44
+msgid "Back to Events List"
+msgstr "Zurück zur Veranstaltungsliste"
+
+#: runs/templates/runs/base.html:7
+msgid "Running Events"
+msgstr "Laufveranstaltungen"
+
+#: runs/templates/runs/base.html:119 runs/templates/runs/base.html:138
+#: runs/templates/runs/event_list.html:9
+msgid "Running Events Registration"
+msgstr "Anmeldung für Laufveranstaltungen"
+
+#: runs/templates/runs/event_detail.html:4
+msgid "Registration"
+msgstr "Anmeldung"
+
+#: runs/templates/runs/event_detail.html:14
+msgid "Registration Deadline:"
+msgstr "Anmeldefrist:"
+
+#: runs/templates/runs/event_detail.html:18
+msgid "No spots available:"
+msgstr "Keine Plätze verfügbar:"
+
+#: runs/templates/runs/event_detail.html:18
+msgid "Registration will place you on the waiting list"
+msgstr "Die Anmeldung setzt Sie auf die Warteliste"
+
+#: runs/templates/runs/event_detail.html:20
+msgid "Available Spots:"
+msgstr "Verfügbare Plätze:"
+
+#: runs/templates/runs/event_detail.html:20
+msgid "out of"
+msgstr "von"
+
+#: runs/templates/runs/event_detail.html:35
+msgid "Registration Form"
+msgstr "Anmeldeformular"
+
+#: runs/templates/runs/event_detail.html:52
+msgid "Register"
+msgstr "Anmelden"
+
+#: runs/templates/runs/event_detail.html:60
+msgid "Registration for this event is currently closed."
+msgstr "Die Anmeldung für diese Veranstaltung ist derzeit geschlossen."
+
+#: runs/templates/runs/event_list.html:4
+msgid "Available Running Events"
+msgstr "Verfügbare Laufveranstaltungen"
+
+#: runs/templates/runs/event_list.html:10
+msgid "Sign up for upcoming running events organized by our company."
+msgstr "Melden Sie sich für kommende Laufveranstaltungen an, die von unserem Unternehmen organisiert werden."
+
+#: runs/templates/runs/event_list.html:23
+msgid "Registration closes on"
+msgstr "Anmeldeschluss am"
+
+#: runs/templates/runs/event_list.html:27
+msgid "No spots available - registration will place you on the waiting list"
+msgstr "Keine Plätze verfügbar - die Anmeldung setzt Sie auf die Warteliste"
+
+#: runs/templates/runs/event_list.html:29
+msgid "spots available out of"
+msgstr "Plätze verfügbar von"
+
+#: runs/templates/runs/event_list.html:33
+msgid "View Details & Register"
+msgstr "Details anzeigen & Anmelden"
+
+#: runs/templates/runs/event_list.html:41
+msgid ""
+"There are no running events available for registration at this time. Please "
+"check back later."
+msgstr ""
+"Derzeit sind keine Laufveranstaltungen zur Anmeldung verfügbar. Bitte schauen "
+"Sie später wieder vorbei."
+
+#: runs/templates/runs/registration_success.html:4
+msgid "Registration Successful"
+msgstr "Anmeldung erfolgreich"
+
+#: runs/templates/runs/registration_success.html:9
+msgid "Registration Successful!"
+msgstr "Anmeldung erfolgreich!"
+
+#: runs/templates/runs/registration_success.html:10
+msgid "Thank you for registering for"
+msgstr "Vielen Dank für Ihre Anmeldung für"
+
+#: runs/templates/runs/registration_success.html:13
+msgid "You are on the waiting list!"
+msgstr "Sie stehen auf der Warteliste!"
+
+#: runs/templates/runs/registration_success.html:14
+msgid ""
+"The event has reached its maximum number of participants. You have been "
+"placed on the waiting list and will be notified if a spot becomes available."
+msgstr ""
+"Die Veranstaltung hat die maximale Teilnehmerzahl erreicht. Sie wurden auf die "
+"Warteliste gesetzt und werden benachrichtigt, wenn ein Platz frei wird."
+
+#: runs/templates/runs/registration_success.html:24
+msgid "Registration Details"
+msgstr "Anmeldedetails"
+
+#: runs/views.py:104
+msgid "Registration for this event is closed."
+msgstr "Die Anmeldung für diese Veranstaltung ist geschlossen."
+
+#: runs/views.py:115
+msgid "No spots available. You have been placed on the waiting list."
+msgstr "Keine Plätze verfügbar. Sie wurden auf die Warteliste gesetzt."

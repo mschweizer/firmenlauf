@@ -5,6 +5,7 @@
 # Django imports
 from django import forms
 from django.core.exceptions import NON_FIELD_ERRORS
+from django.utils.translation import gettext_lazy as _
 
 # Local application imports
 from .models import Participant
@@ -49,7 +50,7 @@ class ParticipantForm(forms.ModelForm):
         """
         year_of_birth = self.cleaned_data.get("year_of_birth")
         if year_of_birth and (year_of_birth < 1900 or year_of_birth > 2023):
-            raise forms.ValidationError("Year of birth must be between 1900 and 2023.")
+            raise forms.ValidationError(_("Year of birth must be between 1900 and 2023."))
         return year_of_birth
 
     def clean(self):

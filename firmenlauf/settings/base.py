@@ -25,6 +25,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",  # Add this for translation support
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -69,10 +70,21 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "de"  # Changed from en-us to de for German
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
+
+# Define supported languages
+LANGUAGES = [
+    ("de", "Deutsch"),
+    ("en", "English"),
+]
+
+# Location of translation files
+LOCALE_PATHS = [
+    BASE_DIR / "locale",
+]
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = "static/"

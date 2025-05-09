@@ -1,22 +1,23 @@
 {% extends 'runs/base.html' %}
+{% load i18n %}
 
-{% block title %}{{ event.name }} - Registration{% endblock %}
+{% block title %}{{ event.name }} - {% trans "Registration" %}{% endblock %}
 
 {% block content %}
 <div class="row">
     <div class="col-md-8">
         <h1>{{ event.name }}</h1>
         <p class="lead">
-            <strong>Date:</strong> {{ event.date|date:"F j, Y" }}<br>
-            <strong>Location:</strong> {{ event.location }}
+            <strong>{% trans "Date:" %}</strong> {{ event.date|date:"d.m.Y" }}<br>
+            <strong>{% trans "Location:" %}</strong> {{ event.location }}
             {% if event.registration_deadline %}
-            <br><strong>Registration Deadline:</strong> {{ event.registration_deadline|date:"F j, Y" }}
+            <br><strong>{% trans "Registration Deadline:" %}</strong> {{ event.registration_deadline|date:"d.m.Y" }}
             {% endif %}
             {% if event.max_participants %}
                 {% if available_spots == 0 %}
-                <br><strong class="text-warning">No spots available:</strong> Registration will place you on the waiting list
+                <br><strong class="text-warning">{% trans "No spots available:" %}</strong> {% trans "Registration will place you on the waiting list" %}
                 {% else %}
-                <br><strong class="text-success">Available Spots:</strong> {{ available_spots }} out of {{ event.max_participants }}
+                <br><strong class="text-success">{% trans "Available Spots:" %}</strong> {{ available_spots }} {% trans "out of" %} {{ event.max_participants }}
                 {% endif %}
             {% endif %}
         </p>
@@ -31,7 +32,7 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-header">
-                <h3>Registration Form</h3>
+                <h3>{% trans "Registration Form" %}</h3>
             </div>
             <div class="card-body">
                 <form method="post">
@@ -48,7 +49,7 @@
                     </div>
                     {% endfor %}
 
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-primary">{% trans "Register" %}</button>
                 </form>
             </div>
         </div>
@@ -56,11 +57,11 @@
 </div>
 {% else %}
 <div class="alert alert-warning">
-    Registration for this event is currently closed.
+    {% trans "Registration for this event is currently closed." %}
 </div>
 {% endif %}
 
 <div class="mt-3">
-    <a href="{% url 'event_list' %}" class="btn btn-secondary">Back to Events List</a>
+    <a href="{% url 'event_list' %}" class="btn btn-secondary">{% trans "Back to Events List" %}</a>
 </div>
 {% endblock %}
